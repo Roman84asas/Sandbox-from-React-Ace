@@ -17,7 +17,6 @@ class App extends Comment{
             </div>
         );
     }
-
 }
 
 export default App;
