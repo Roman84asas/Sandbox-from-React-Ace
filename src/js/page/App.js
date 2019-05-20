@@ -8,7 +8,7 @@ class App extends Comment{
             <div>
                 <div className="headerSandbox">
                     <Header size='hugo'>
-                        SANDBOX
+                        SANDBOX (Возвращаюсь в проекты)))
                     </Header>
                 </div>
                 <div className="editor">
