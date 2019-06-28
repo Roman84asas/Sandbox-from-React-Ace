@@ -1,11 +1,11 @@
 const app = require('http').createServer();
 const io = require('socket.io')(app);
 
-app.listen(80);
+app.listen(3030);
 
 io.on('connection', function (socket) {
-    socket.emit('news', { hello: 'world' });
-    socket.on('my other event', function (data) {
-        console.log(data);
+    console.log('conected');
+    socket.on('CHANGE_CLIENT', function (data) {
+        socket.broadcast.emit('CHANGE_SERVER', data);
     });
 });
