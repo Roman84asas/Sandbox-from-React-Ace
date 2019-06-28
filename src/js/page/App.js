@@ -12,7 +12,7 @@ class App extends React.Component{
         return (
             <div>
                 <div className="headerSandbox">
-                    <Header size='hugo'>
+                    <Header size='huge'>
                         SANDBOX
                     </Header>
                 </div>
@@ -21,15 +21,17 @@ class App extends React.Component{
                         mode="javascript"
                         theme="monokai"
                         name="sandbox"
+                        height='500px'
+                        width='1000px'
                         showGutter={true}
                         highlightActiveLine={true}
-                        height='500px'
                         fontSize={16}
+                        value={`let val = "Hello world";`}
                         editorProps={{
                             $blockScrolling: true
 
                         }}
-                    />,
+                    />
                 </div>
             </div>
         );
