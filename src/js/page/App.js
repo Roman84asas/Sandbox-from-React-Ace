@@ -14,6 +14,7 @@ class App extends React.Component{
         super(props);
         this.state = {
             value: '',
+            connected: false,
         }
     }
 
@@ -32,17 +33,33 @@ class App extends React.Component{
         });
     }
 
+    connectRoom() {
+        socket.emit('CHANGE_CONNECT', this.input.value);
+        this.setState({
+            connected: true,
+        })
+    }
+
     render(){
         return (
             <div>
+
                 <div className="headerSandbox">
-                    <Header size='huge'>
-                        SANDBOX
-                    </Header>
-                    <Input ref={ref => this.input = ref} />
-                    <Button>Connect</Button>
+
+                    <Header size='huge'>SANDBOX</Header>
+
+                    <Input ref={ref => (this.input = ref)}/>
+
+                    <Button
+                        disabled={this.state.connected}
+                        onClick={this.connectRoom.bind(this)}>
+                        Connect
+                    </Button>
+
                 </div>
+
                 <div className="editor">
+
                     <AceEditor
                         mode="javascript"
                         theme="monokai"
@@ -58,7 +75,9 @@ class App extends React.Component{
                         }}
                         onChange={this.handleChange.bind(this)}
                     />
+
                 </div>
+
             </div>
         );
     }
