@@ -14,12 +14,16 @@ class App extends React.Component{
         super(props);
         this.state = {
             value: '',
+            room: '',
             connected: false,
         }
     }
 
     handleChange(value) {
-        socket.emit('CHANGE_CLIENT', value);
+        socket.emit('CHANGE_CLIENT', {
+            room: this.state.room,
+            code: value,
+        });
         this.setState({
             value
         })
@@ -34,7 +38,7 @@ class App extends React.Component{
     }
 
     connectRoom() {
-        socket.emit('CHANGE_CONNECT', this.input.value);
+        socket.emit('JOIN_ROOM', this.state.room);
         this.setState({
             connected: true,
         })
@@ -48,7 +52,7 @@ class App extends React.Component{
 
                     <Header size='huge'>SANDBOX</Header>
 
-                    <Input ref={ref => (this.input = ref)}/>
+                    <Input onChange={e => this.setState({ room: e.target.value })}/>
 
                     <Button
                         disabled={this.state.connected}
